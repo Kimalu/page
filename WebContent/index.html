@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sign in &middot; Twitter Bootstrap</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Le styles -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+body {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: #f5f5f5;
+}
+</style>
+<link href="/css/bootstrap-responsive.css" rel="stylesheet">
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="/js/html5shiv.js"></script>
+    <![endif]-->
+<!-- Fav and touch icons -->
+<!-- <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="/ico/favicon.png"> -->
+<link href="css/smoothness/jquery-ui-1.9.1.custom.css" rel="stylesheet">
+
+</head>
+<body>
+	<div class="container">
+		<form class="well form-search">
+			<input type="text" class="input-block-level input-big search-query" placeholder="提示什么还不确定" />
+			<span>
+				<i class="icon-chevron-right" id="button"></i>
+				高级选项
+			</span>
+			<div id="effect" class="ui-widget-content ui-corner-all" style="">
+
+				<h3>时间是？</h3>
+
+				<div class=".inline">
+					<p>开始日期：</p>
+					<input type="text" id="smq_str_date">
+				</div>
+				<div class=".inline">
+					<p>结束日期：</p>
+					<input type="text" id="smq_end_date">
+				</div>
+			</div>
+			<div align="right">
+				<button class="btn btn-small btn-primary " type="button">Search</button>
+			</div>
+		</form>
+	</div>
+	<!-- /container -->
+	<!-- Le javascript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- <script type="text/javascript" src=""></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap-transition.js"></script>
+	<script src="js/bootstrap-alert.js"></script>
+	<script src="js/bootstrap-modal.js"></script>
+	<script src="js/bootstrap-dropdown.js"></script>
+	<script src="js/bootstrap-scrollspy.js"></script>
+	<script src="js/bootstrap-tab.js"></script>
+	<script src="js/bootstrap-tooltip.js"></script>
+	<script src="js/bootstrap-popover.js"></script>
+	<script src="js/bootstrap-button.js"></script>
+	<script src="js/bootstrap-collapse.js"></script>
+	<script src="js/bootstrap-carousel.js"></script>
+	<script src="js/bootstrap-typeahead.js"></script> -->
+	<script type="text/javascript" src="js/jquery-1.8.2.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.9.1.custom.js"></script>
+	<script>
+		$(function() {
+			var state = true;
+			$("#button").click(function() {
+				if (state) {
+					$(this).attr("class", "icon-chevron-down");
+					showEffect();
+
+				} else {
+					$(this).attr("class", "icon-chevron-right")
+					hideEffect();
+
+				}
+				state = !state;
+				return false;
+			});
+
+			function showEffect() {
+				var options = {};
+				$("#effect").show("blind", options, 500);
+			}
+			;
+
+			function hideEffect() {
+				$("#effect:visible").hide("blind", "linear");
+			}
+			;
+
+			$("#smq_str_date").datepicker(
+					{
+						minDate : 0,
+						changeMonth : true,
+						numberOfMonths : 2,
+						onClose : function(selectedDate) {
+							$("#smq_end_date").datepicker("option", "minDate",
+									selectedDate);
+						}
+					});
+			$("#smq_end_date").datepicker(
+					{
+						minDate : 0,
+						changeMonth : true,
+						numberOfMonths : 2,
+						onClose : function(selectedDate) {
+							$("#smq_str_date").datepicker("option", "maxDate",
+									selectedDate);
+						}
+					});
+
+		});
+	</script>
+</body>
+</html>
