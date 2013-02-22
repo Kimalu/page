@@ -31,28 +31,58 @@ body {
 </head>
 <body>
 	<div class="container">
-		<form class="well form-search">
-			<input type="text" class="input-block-level input-big search-query" placeholder="提示什么还不确定" />
-			<span>
+		<form class="form-horizontal form-search">
+
+			<div class="input-append">
+				<input type="text" class="span10 input-big search-query" placeholder="提示什么还不确定" />
+				<!-- <button class="btn" type="button">执行</button> -->
+				<button class="btn btn-primary " type="button">Search</button>
+			</div>
+			<div>
 				<i class="icon-chevron-right" id="button"></i>
 				高级选项
-			</span>
-			<div id="effect" class="ui-widget-content ui-corner-all" style="">
+			</div>
+			<div id="effect" style="display: none">
+				<!-- <div id="startEndDate">
+					<h3>时间是？</h3>
 
-				<h3>时间是？</h3>
+					<div class=".inline">
+						<p>开始日期：</p>
+						<input type="text" id="dateIn">
+					</div>
+					<div class=".inline">
+						<p>结束日期：</p>
+						<input type="text" id="dateOut">
+					</div>
+				</div> -->
+				<div class="control-group">
+					<label class="control-label" for="highPrice">价格:</label>
+					<div class="controls">
 
-				<div class=".inline">
-					<p>开始日期：</p>
-					<input type="text" id="smq_str_date">
+						<div class="input-prepend input-append">
+							<span class="add-on">$</span>
+							<input id="lowPrice" class="span1" type="text" size="16">
+							<span class="add-on">.00</span>
+						</div>
+						-
+						<div class="input-prepend input-append">
+							<span class="add-on">$</span>
+							<input id="highPrice" class="span1" type="text" size="16">
+							<span class="add-on">.00</span>
+						</div>
+					</div>
 				</div>
-				<div class=".inline">
-					<p>结束日期：</p>
-					<input type="text" id="smq_end_date">
+				<div class="control-group">
+					<label class="control-label" for="date">日期:</label>
+					<div class="controls">
+						<input type="text" class="span2" id="dateIn">
+						-
+						<input type="text" class="span2" id="dateOut">
+
+					</div>
 				</div>
 			</div>
-			<div align="right">
-				<button class="btn btn-small btn-primary " type="button">Search</button>
-			</div>
+			<div align="right"></div>
 		</form>
 	</div>
 	<!-- /container -->
@@ -104,23 +134,23 @@ body {
 			}
 			;
 
-			$("#smq_str_date").datepicker(
+			$("#dateIn").datepicker(
 					{
 						minDate : 0,
-						changeMonth : true,
+						changeMonth : false,
 						numberOfMonths : 2,
 						onClose : function(selectedDate) {
-							$("#smq_end_date").datepicker("option", "minDate",
+							$("#dateOut").datepicker("option", "minDate",
 									selectedDate);
 						}
 					});
-			$("#smq_end_date").datepicker(
+			$("#dateOut").datepicker(
 					{
 						minDate : 0,
-						changeMonth : true,
+						changeMonth : false,
 						numberOfMonths : 2,
 						onClose : function(selectedDate) {
-							$("#smq_str_date").datepicker("option", "maxDate",
+							$("#dateIn").datepicker("option", "maxDate",
 									selectedDate);
 						}
 					});
